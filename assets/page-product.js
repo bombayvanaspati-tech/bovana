@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return `
       <div class="product-detail">
         <div class="reveal in">
-          <div class="img"><img src="${product.image}" alt="${product.name}" width="1024" height="1024"></div>
+          ${(() => { const imgs = (product.images && product.images.length) ? product.images : [product.image]; return `<div class="img gallery" id="gallery">
+            ${imgs.map((src,i)=>`<img src="${src}" alt="${product.name} — image ${i+1}" width="1024" height="1024" class="${i===0?'active':''}" data-i="${i}">`).join("")}
+            ${imgs.length>1?`<div class="dots">${imgs.map((_,i)=>`<button class="dot${i===0?' active':''}" data-i="${i}" aria-label="Image ${i+1}"></button>`).join("")}</div>`:""}
+          </div>`; })()}
         </div>
         <div class="reveal in">
           <p class="eyebrow">${product.categoryLabel}</p>
@@ -57,6 +60,24 @@ document.addEventListener("DOMContentLoaded", () => {
       Cart.add({ slug: product.slug, name: product.name, price: product.price, image: product.image }, qty);
       toast(`${product.name} added to cart`, { desc: `Quantity: ${qty}` });
     });
+    // Auto image slider
+    const gal = document.getElementById("gallery");
+    if (gal) {
+      const imgs = gal.querySelectorAll("img");
+      const dots = gal.querySelectorAll(".dot");
+      let idx = 0, paused = false, timer = null;
+      const show = (n) => {
+        idx = (n + imgs.length) % imgs.length;
+        imgs.forEach((el,i)=>el.classList.toggle("active", i===idx));
+        dots.forEach((el,i)=>el.classList.toggle("active", i===idx));
+      };
+      const start = () => { if (imgs.length<=1) return; stop(); timer = setInterval(()=>!paused && show(idx+1), 3500); };
+      const stop = () => { if (timer) clearInterval(timer); };
+      dots.forEach(d => d.addEventListener("click", () => { show(parseInt(d.dataset.i,10)); start(); }));
+      gal.addEventListener("mouseenter", () => paused = true);
+      gal.addEventListener("mouseleave", () => paused = false);
+      start();
+    }
   }
 
   document.getElementById("product-detail").innerHTML = html();

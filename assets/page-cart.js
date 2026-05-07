@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   let step = "cart";
-  let info = { name: "", email: "", address: "", city: "", pin: "" };
+  let info = { name: "", email: "", number: "" };
   const root = document.getElementById("cart-root");
 
   function render() {
@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (step === "done") {
       root.innerHTML = `
         <div style="text-align:center;max-width:32rem;margin-inline:auto;padding-block:8rem">
-          <p class="eyebrow">Order Placed</p>
+          <p class="eyebrow">Order Sent</p>
           <h1 style="font-size:3rem;color:var(--cream);margin-top:1rem">Thank you.</h1>
           <span class="gold-divider"></span>
-          <p style="margin-top:1.5rem;color:color-mix(in oklab, var(--cream) 80%, transparent)">Your ritual is on its way. A confirmation has been sent to your email.</p>
+          <p style="margin-top:1.5rem;color:color-mix(in oklab, var(--cream) 80%, transparent)">Your enquiry has been sent on WhatsApp. We'll be in touch shortly.</p>
           <a class="btn btn-gold" href="shop.html" style="margin-top:2.5rem">Continue Shopping →</a>
         </div>`;
       return;
@@ -44,13 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <form id="checkout-form" class="form">
           <div class="field"><label class="eyebrow">Full Name</label><input name="name" value="${info.name}"></div>
           <div class="field"><label class="eyebrow">Email</label><input type="email" name="email" value="${info.email}"></div>
-          <div class="field"><label class="eyebrow">Address</label><input name="address" value="${info.address}"></div>
-          <div class="row2">
-            <div class="field"><label class="eyebrow">City</label><input name="city" value="${info.city}"></div>
-            <div class="field"><label class="eyebrow">PIN</label><input name="pin" value="${info.pin}"></div>
-          </div>
+          <div class="field"><label class="eyebrow">Number</label><input type="tel" name="number" value="${info.number}"></div>
           <button type="submit" class="btn btn-gold" style="width:100%;margin-top:1rem">Place Order</button>
-          <p class="note">Demo checkout · No payment required</p>
+          <p class="note">Order is sent via WhatsApp</p>
         </form>`;
 
       const summaryBtn = step === "cart"
@@ -105,10 +101,16 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const fd = new FormData(form);
         info = Object.fromEntries(fd.entries());
-        if (!info.name || !info.email || !info.address || !info.city || !info.pin) {
+        if (!info.name || !info.email || !info.number) {
           toast("Please complete all fields", { error: true });
           return;
         }
+        const items = Cart.get();
+        const total = Cart.total();
+        const lines = items.map(i => `• ${i.name} — Qty: ${i.qty} — ${fmt(i.price * i.qty)}`).join("\n");
+        const message = `I am looking for this:\n\n${lines}\n\nTotal: ${fmt(total)}\n\nName: ${info.name}\nEmail: ${info.email}\nNumber: ${info.number}`;
+        const url = `https://wa.me/919819412559?text=${encodeURIComponent(message)}`;
+        window.open(url, "_blank");
         Cart.clear();
         step = "done";
         render();

@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="reveal in">
           ${(() => { const imgs = (product.images && product.images.length) ? product.images : [product.image]; return `<div class="img gallery" id="gallery">
             ${imgs.map((src,i)=>`<img src="${src}" alt="${product.name} — image ${i+1}" width="1024" height="1024" class="${i===0?'active':''}" data-i="${i}">`).join("")}
+            ${imgs.length>1?`<button class="nav-arrow prev" id="g-prev" aria-label="Previous image">&#10094;</button><button class="nav-arrow next" id="g-next" aria-label="Next image">&#10095;</button>`:""}
             ${imgs.length>1?`<div class="dots">${imgs.map((_,i)=>`<button class="dot${i===0?' active':''}" data-i="${i}" aria-label="Image ${i+1}"></button>`).join("")}</div>`:""}
           </div>`; })()}
         </div>
@@ -71,9 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
         imgs.forEach((el,i)=>el.classList.toggle("active", i===idx));
         dots.forEach((el,i)=>el.classList.toggle("active", i===idx));
       };
-      const start = () => { if (imgs.length<=1) return; stop(); timer = setInterval(()=>!paused && show(idx+1), 3500); };
+      const start = () => { if (imgs.length<=1) return; stop(); timer = setInterval(()=>!paused && show(idx+1), 2000); };
       const stop = () => { if (timer) clearInterval(timer); };
       dots.forEach(d => d.addEventListener("click", () => { show(parseInt(d.dataset.i,10)); start(); }));
+      const prevBtn = document.getElementById("g-prev");
+      const nextBtn = document.getElementById("g-next");
+      if (prevBtn) prevBtn.addEventListener("click", () => { show(idx-1); start(); });
+      if (nextBtn) nextBtn.addEventListener("click", () => { show(idx+1); start(); });
       gal.addEventListener("mouseenter", () => paused = true);
       gal.addEventListener("mouseleave", () => paused = false);
       start();

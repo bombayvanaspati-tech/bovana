@@ -421,3 +421,8 @@ section.bordered-bottom { border-bottom: 1px solid var(--border); }
 .product-detail .gallery .dot { width: 1rem; height: .375rem; padding: 0; border: 0; background: color-mix(in oklab, var(--cream) 40%, transparent); cursor: pointer; transition: all .3s ease; }
 .product-detail .gallery .dot:hover { background: color-mix(in oklab, var(--cream) 70%, transparent); }
 .product-detail .gallery .dot.active { width: 2rem; background: var(--gold); }
+.product-detail .gallery .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; background: color-mix(in oklab, var(--background) 60%, transparent); color: var(--cream); border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent); backdrop-filter: blur(4px); cursor: pointer; opacity: 0; transition: all .3s ease; z-index: 3; font-size: 1rem; }
+.product-detail .gallery:hover .nav-arrow { opacity: 1; }
+.product-detail .gallery .nav-arrow:hover { background: color-mix(in oklab, var(--background) 85%, transparent); color: var(--gold); }
+.product-detail .gallery .nav-arrow.prev { left: .75rem; }
+.product-detail .gallery .nav-arrow.next { right: .75rem; }

@@ -11,8 +11,30 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("page-title").textContent = `${product.name} — ${product.categoryLabel} | BOVANA`;
   document.getElementById("page-desc").setAttribute("content", product.description);
 
+  const isCig = product.category === "herbal-cigarettes";
+  const PACKS = [
+    { id: "20", label: "Pack of 20", price: 490 },
+    { id: "10", label: "Pack of 10", price: 240 },
+  ];
+  let packId = "20";
   let qty = 1;
+  const getPack = () => PACKS.find(p => p.id === packId);
+  const unitPrice = () => isCig ? getPack().price : product.price;
+
   function html() {
+    const packHTML = isCig ? `
+      <div class="pack-select" style="margin-top:2rem">
+        <p class="eyebrow">Pack Size</p>
+        <div class="pack-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem">
+          ${PACKS.map(p => `
+            <button class="pack-opt${p.id===packId?' active':''}" data-pack="${p.id}" style="padding:.85rem 1rem;text-align:left;border:1px solid ${p.id===packId?'var(--gold)':'var(--border)'};background:${p.id===packId?'rgba(201,162,39,.1)':'transparent'};color:var(--cream);cursor:pointer;transition:all .2s">
+              <span style="display:block;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)">${p.label}</span>
+              <span style="display:block;margin-top:.25rem;font-family:var(--font-display, serif);font-size:1.5rem">${fmt(p.price)}</span>
+            </button>
+          `).join("")}
+        </div>
+      </div>` : "";
+
     return `
       <div class="product-detail">
         <div class="reveal in">
@@ -35,10 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="badges">
             ${["No Tobacco","No Nicotine","100% Herbal Blend"].map(b => `<span>✓ ${b}</span>`).join("")}
           </div>
+          ${packHTML}
           <div class="price-row">
             <div>
               <p class="eyebrow">Price</p>
-              <p class="price">${fmt(product.price)}</p>
+              <p class="price" id="unit-price">${fmt(unitPrice())}</p>
             </div>
             <div class="qty">
               <button id="q-minus" aria-label="Decrease">–</button>
@@ -46,21 +69,46 @@ document.addEventListener("DOMContentLoaded", () => {
               <button id="q-plus" aria-label="Increase">+</button>
             </div>
           </div>
-          <button class="add-cart" id="add-cart">Add to Cart · <span id="add-total">${fmt(product.price * qty)}</span></button>
+          <button class="add-cart" id="add-cart">Add to Cart · <span id="add-total">${fmt(unitPrice() * qty)}</span></button>
           <p class="note">18+ only · For herbal use only · Not intended for medical purposes</p>
         </div>
       </div>`;
   }
 
+  function refreshPrice() {
+    const up = document.getElementById("unit-price");
+    const tot = document.getElementById("add-total");
+    if (up) up.textContent = fmt(unitPrice());
+    if (tot) tot.textContent = fmt(unitPrice() * qty);
+  }
+
   function bind() {
     const val = document.getElementById("q-val");
-    const tot = document.getElementById("add-total");
-    document.getElementById("q-minus").addEventListener("click", () => { qty = Math.max(1, qty - 1); val.textContent = qty; tot.textContent = fmt(product.price * qty); });
-    document.getElementById("q-plus").addEventListener("click", () => { qty += 1; val.textContent = qty; tot.textContent = fmt(product.price * qty); });
+    document.getElementById("q-minus").addEventListener("click", () => { qty = Math.max(1, qty - 1); val.textContent = qty; refreshPrice(); });
+    document.getElementById("q-plus").addEventListener("click", () => { qty += 1; val.textContent = qty; refreshPrice(); });
     document.getElementById("add-cart").addEventListener("click", () => {
-      Cart.add({ slug: product.slug, name: product.name, price: product.price, image: product.image }, qty);
-      toast(`${product.name} added to cart`, { desc: `Quantity: ${qty}` });
+      const p = isCig ? getPack() : null;
+      const slugV = isCig ? `${product.slug}--pack${packId}` : product.slug;
+      const nameV = isCig ? `${product.name} · ${p.label}` : product.name;
+      Cart.add({ slug: slugV, name: nameV, price: unitPrice(), image: product.image }, qty);
+      toast(`${nameV} added to cart`, { desc: `Quantity: ${qty}` });
     });
+
+    if (isCig) {
+      document.querySelectorAll(".pack-opt").forEach(btn => {
+        btn.addEventListener("click", () => {
+          packId = btn.dataset.pack;
+          document.querySelectorAll(".pack-opt").forEach(b => {
+            const active = b.dataset.pack === packId;
+            b.classList.toggle("active", active);
+            b.style.borderColor = active ? "var(--gold)" : "var(--border)";
+            b.style.background = active ? "rgba(201,162,39,.1)" : "transparent";
+          });
+          refreshPrice();
+        });
+      });
+    }
+
     // Auto image slider
     const gal = document.getElementById("gallery");
     if (gal) {

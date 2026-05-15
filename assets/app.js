@@ -224,7 +224,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     renderHeader();
     renderFooter();
-    renderAgeGate();
+    // renderAgeGate();
     revealInit();
   });
 })();

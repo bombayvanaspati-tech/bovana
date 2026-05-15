@@ -159,28 +159,28 @@
   }
 
   // ---------- Age gate ----------
-  function renderAgeGate() {
-    if (localStorage.getItem("bovana-age-verified")) return;
-    const el = document.createElement("div");
-    el.className = "age-gate";
-    el.innerHTML = `
-      <div class="panel">
-        <p class="eyebrow">Welcome</p>
-        <h2>Are you <span class="gold-shimmer">18 or older?</span></h2>
-        <span class="gold-divider"></span>
-        <p>Our botanical products are crafted for adult use only. By entering, you confirm you meet the age requirement in your region.</p>
-        <div class="actions">
-          <button class="accept">Yes, I am 18+</button>
-          <a class="exit" href="https://www.google.com">Exit</a>
-        </div>
-        <p class="micro">For herbal use only · Not intended for medical purposes</p>
-      </div>`;
-    document.body.appendChild(el);
-    el.querySelector(".accept").addEventListener("click", () => {
-      localStorage.setItem("bovana-age-verified", "1");
-      el.remove();
-    });
-  }
+  // function renderAgeGate() {
+  //   if (localStorage.getItem("bovana-age-verified")) return;
+  //   const el = document.createElement("div");
+  //   el.className = "age-gate";
+  //   el.innerHTML = `
+  //     <div class="panel">
+  //       <p class="eyebrow">Welcome</p>
+  //       <h2>Are you <span class="gold-shimmer">18 or older?</span></h2>
+  //       <span class="gold-divider"></span>
+  //       <p>Our botanical products are crafted for adult use only. By entering, you confirm you meet the age requirement in your region.</p>
+  //       <div class="actions">
+  //         <button class="accept">Yes, I am 18+</button>
+  //         <a class="exit" href="https://www.google.com">Exit</a>
+  //       </div>
+  //       <p class="micro">For herbal use only · Not intended for medical purposes</p>
+  //     </div>`;
+  //   document.body.appendChild(el);
+  //   el.querySelector(".accept").addEventListener("click", () => {
+  //     localStorage.setItem("bovana-age-verified", "1");
+  //     el.remove();
+  //   });
+  // }
 
   // ---------- Reveal on scroll ----------
   function revealInit() {

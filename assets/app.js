@@ -130,7 +130,7 @@
             <h3>BOVANA</h3>
             <p class="eyebrow" style="margin-top:4px">Bombay Vanaspati · India</p>
             <p class="body">Premium herbal tea and 100% tobacco-free, nicotine-free herbal cigarettes. Hand-crafted in India, sourced ethically, composed for the modern ritual.</p>
-            <div class="social">${socialIcons.map(i => `<a href="#" aria-label="social">${i}</a>`).join("")}</div>
+            <div class="social">${socialIcons.map(i => `<a href="https://www.instagram.com/bovana_in" aria-label="social">${i}</a>`).join("")}</div>
           </div>
           <div class="footer-col">
             <p class="eyebrow label">Explore</p>

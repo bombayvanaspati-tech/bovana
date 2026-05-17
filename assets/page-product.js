@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="pack-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem">
           ${PACKS.map(p => `
             <button class="pack-opt${p.id===packId?' active':''}" data-pack="${p.id}" style="padding:.85rem 1rem;text-align:left;border:1px solid ${p.id===packId?'var(--gold)':'var(--border)'};background:${p.id===packId?'rgba(201,162,39,.1)':'transparent'};color:var(--cream);cursor:pointer;transition:all .2s">
-              <span style="display:block;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)">${p.label}</span>
+              <span style="display:block;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)">${p.label}</span>
               <span style="display:block;margin-top:.25rem;font-family:var(--font-display, serif);font-size:1.5rem">${fmt(p.price)}</span>
             </button>
           `).join("")}

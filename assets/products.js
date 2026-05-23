@@ -2,10 +2,10 @@
 window.PRODUCTS = [
   {
     slug: "chamomile-rose-herbal-tea",
-    name: "Chamomile & Rose Herbal Tea",
+    name: "Tulsi Masala Chai",
     category: "herbal-tea",
     categoryLabel: "Herbal Tea",
-    price: 449,
+    price: 199,
     image: "assets/product-chamomile-tea.webp?v=20260512025353",
     images: ["assets/product-chamomile-tea.webp?v=20260512025353","assets/herbs-flatlay.webp?v=20260512025353","assets/lifestyle-ritual.webp?v=20260512025353","assets/hero-botanicals.webp?v=20260512025353"],
     tagline: "A floral evening cup — caffeine-free",
@@ -15,11 +15,11 @@ window.PRODUCTS = [
     popular: true,
   },
   {
-    slug: "tulsi-ginger-green-tea",
-    name: "Tulsi Ginger Green Tea",
+    slug: "tulsi-ginger-green-herbal-tea",
+    name: "Masala Black Tea",
     category: "herbal-tea",
     categoryLabel: "Herbal Tea",
-    price: 499,
+    price: 199,
     image: "assets/product-tulsi-tea.webp?v=20260512025353",
     images: ["assets/product-tulsi-tea.webp?v=20260512025353","assets/product-herb-blend.webp?v=20260512025353","assets/herbs-flatlay.webp?v=20260512025353","assets/lifestyle-ritual.webp?v=20260512025353"],
     tagline: "Holy basil, ginger & green leaf — the morning cup",
@@ -29,11 +29,39 @@ window.PRODUCTS = [
     popular: true,
   },
   {
-    slug: "bonava-supreme-leaf",
+    slug: "hibiscus-mint-herbal-tea",
+    name: "Hibiscus & Mint Herbal Tea",
+    category: "herbal-tea",
+    categoryLabel: "Herbal Tea",
+    price: 199,
+    image: "assets/product-herb-blend.webp?v=20260512025353",
+    images: ["assets/product-herb-blend.webp?v=20260512025353","assets/herbs-flatlay.webp?v=20260512025353","assets/lifestyle-ritual.webp?v=20260512025353","assets/hero-botanicals.webp?v=20260512025353"],
+    tagline: "Tart hibiscus lifted with cool garden mint",
+    aroma: ["Cranberry Hibiscus", "Cool Spearmint", "Citrus Peel"],
+    ingredients: ["Hibiscus Flower", "Spearmint", "Orange Peel", "Rosehip"],
+    description: "A ruby-red, caffeine-free infusion with bright tartness from whole hibiscus petals, softened by spearmint and a whisper of citrus. Best enjoyed warm or over ice.",
+    popular: false,
+  },
+  {
+    slug: "lavender-honey-herbal-tea",
+    name: "Lavender & Honey Herbal Tea",
+    category: "herbal-tea",
+    categoryLabel: "Herbal Tea",
+    price: 199,
+    image: "assets/lifestyle-ritual.webp?v=20260512025353",
+    images: ["assets/lifestyle-ritual.webp?v=20260512025353","assets/product-chamomile-tea.webp?v=20260512025353","assets/herbs-flatlay.webp?v=20260512025353","assets/hero-botanicals.webp?v=20260512025353"],
+    tagline: "Soft lavender with a gentle honeyed finish",
+    aroma: ["Floral Lavender", "Warm Honey", "Vanilla Bean"],
+    ingredients: ["Culinary Lavender", "Liquorice Root", "Vanilla Bean", "Chamomile"],
+    description: "A calming evening blend pairing Provence lavender with natural sweetness from liquorice root and vanilla. Caffeine-free, mellow, and composed for slow rituals.",
+    popular: false,
+  },
+  {
+    slug: "bonava-supreme-leaf-herbal-cigarette",
     name: "BONAVA Supreme Leaf",
     category: "herbal-cigarettes",
     categoryLabel: "Herbal Cigarettes",
-    price: 490,
+    price: 440,
     image: "assets/product-bonava-supreme-leaf.webp?v=20260512025353",
     images: ["assets/product-bonava-supreme-leaf.webp?v=20260512025353","assets/product-bonava-supreme-leaf-1.webp?v=20260512025353","assets/product-bonava-supreme-leaf-2.webp?v=20260512025353","assets/product-bonava-supreme-leaf-3.webp?v=20260512025353","assets/product-bonava-supreme-leaf-4.webp?v=20260512025353","assets/product-bonava-supreme-leaf-5.webp?v=20260512025353"],
     tagline: "Premium Mullein + Raspberry Leaf · Ultra-Premium Blend",
@@ -43,11 +71,11 @@ window.PRODUCTS = [
     popular: true,
   },
   {
-    slug: "bonava-mint-sovereign",
+    slug: "bonava-mint-sovereign-herbal-cigarette",
     name: "BONAVA Mint Sovereign",
     category: "herbal-cigarettes",
     categoryLabel: "Herbal Cigarettes",
-    price: 490,
+    price: 440,
     image: "assets/product-bonava-mint-sovereign.webp?v=20260512025353",
     images: ["assets/product-bonava-mint-sovereign.webp?v=20260512025353","assets/product-bonava-mint-sovereign-1.webp?v=20260512025353","assets/product-bonava-mint-sovereign-2.webp?v=20260512025353","assets/product-bonava-mint-sovereign-3.webp?v=20260512025353","assets/product-bonava-mint-sovereign-4.webp?v=20260512025353","assets/product-bonava-mint-sovereign-5.webp?v=20260512025353"],
     tagline: "Premium Mint Herbal Infusion · Ultra-Premium Blend",
@@ -57,11 +85,11 @@ window.PRODUCTS = [
     popular: true,
   },
   {
-    slug: "bonava-alpha-clove",
+    slug: "bonava-alpha-clove-herbal-cigarette",
     name: "BONAVA Alpha Clove",
     category: "herbal-cigarettes",
     categoryLabel: "Herbal Cigarettes",
-    price: 490,
+    price: 440,
     image: "assets/product-bonava-alpha-clove.webp?v=20260512025353",
     images: ["assets/product-bonava-alpha-clove.webp?v=20260512025353","assets/product-bonava-alpha-clove-1.webp?v=20260512025353","assets/product-bonava-alpha-clove-2.webp?v=20260512025353","assets/product-bonava-alpha-clove-3.webp?v=20260512025353","assets/product-bonava-alpha-clove-4.webp?v=20260512025353","assets/product-bonava-alpha-clove-5.webp?v=20260512025353"],
     tagline: "Premium Clove & Mint Herbal Infusion · Royal Blend",
@@ -71,7 +99,7 @@ window.PRODUCTS = [
     popular: true,
   },
   {
-    slug: "herbal-cigar",
+    slug: "herbal-cigar-herbal-cigarette",
     name: "Herbal Cigar",
     category: "cigar",
     categoryLabel: "Coming Soon",
@@ -84,7 +112,7 @@ window.PRODUCTS = [
     comingSoon: true,
   },
   {
-    slug: "hookah-flavor",
+    slug: "hookah-flavor-herbal-cigarette",
     name: "Hookah Herbal Flavor",
     category: "hookah",
     categoryLabel: "Coming Soon",
@@ -107,5 +135,14 @@ window.CATEGORIES = [
 ];
 
 window.getProduct = function (slug) {
-  return window.PRODUCTS.find((p) => p.slug === slug);
+  if (!slug) return;
+  const base = slug.replace(/--(?:pack\d+|g\d+)$/, "");
+  let product = window.PRODUCTS.find((p) => p.slug === base);
+  if (!product && !base.endsWith("-herbal-cigarette")) {
+    product = window.PRODUCTS.find((p) => p.slug === `${base}-herbal-cigarette`);
+  }
+  if (!product && !base.endsWith("-herbal-tea")) {
+    product = window.PRODUCTS.find((p) => p.slug === `${base}-herbal-tea`);
+  }
+  return product;
 };

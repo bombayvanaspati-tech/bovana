@@ -12,24 +12,56 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("page-desc").setAttribute("content", product.description);
 
   const isCig = product.category === "herbal-cigarettes";
-  const PACKS = [
-    { id: "20", label: "Pack of 20", price: 490 },
-    { id: "10", label: "Pack of 10", price: 240 },
-  ];
-  let packId = "20";
+  const isTea = product.category === "herbal-tea";
+  const SIZE_OPTIONS = isCig
+    ? { suffix: "pack", label: "Pack Size", defaultId: "20", options: [
+      { id: "5", label: "Pack of 5", price: 125, discount: 0 },  
+      { id: "10", label: "Pack of 10", price: 240, discount: 15, bestSeller: true },
+      { id: "20", label: "Pack of 20", price: 440, discount: 18 },
+
+      ]}
+    : isTea
+    ? { suffix: "g", label: "Weight", defaultId: "100", options: [
+        { id: "50", label: "50g", price: 100, discount: 0 },
+        { id: "100", label: "100g", price: 199, discount: 15, bestSeller: true },
+        { id: "200", label: "200g", price: 399, discount: 18 },
+      ]}
+    : null;
+  let sizeId = SIZE_OPTIONS?.defaultId;
   let qty = 1;
-  const getPack = () => PACKS.find(p => p.id === packId);
-  const unitPrice = () => isCig ? getPack().price : product.price;
+  const getSize = () => SIZE_OPTIONS?.options.find((o) => o.id === sizeId);
+  const unitPrice = () => (SIZE_OPTIONS ? getSize().price : product.price);
+  const originalPrice = (price, discount) =>
+    discount ? Math.round(price / (1 - discount / 100)) : null;
+  const sizePriceHTML = (o) => {
+    const orig = originalPrice(o.price, o.discount);
+    return `
+      <div class="pack-prices">
+        ${o.discount ? `<span class="pack-discount-tag">${o.discount}% OFF</span>` : ""}
+        <span class="pack-price-sale">${fmt(o.price)}</span>
+        ${orig ? `<span class="pack-price-original">${fmt(orig)}</span>` : ""}
+      </div>`;
+  };
+  const unitPriceHTML = (o) => {
+    if (!o) return `<span class="price">${fmt(product.price)}</span>`;
+    const orig = originalPrice(o.price, o.discount);
+    if (!o.discount) return `<span class="price">${fmt(o.price)}</span>`;
+    return `
+      <span class="pack-discount-tag">${o.discount}% OFF</span>
+      <span class="price">${fmt(o.price)}</span>
+      <span class="pack-price-original">${fmt(orig)}</span>`;
+  };
 
   function html() {
-    const packHTML = isCig ? `
+    const sizeHTML = SIZE_OPTIONS ? `
       <div class="pack-select" style="margin-top:2rem">
-        <p class="eyebrow">Pack Size</p>
-        <div class="pack-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem">
-          ${PACKS.map(p => `
-            <button class="pack-opt${p.id===packId?' active':''}" data-pack="${p.id}" style="padding:.85rem 1rem;text-align:left;border:1px solid ${p.id===packId?'var(--gold)':'var(--border)'};background:${p.id===packId?'rgba(201,162,39,.1)':'transparent'};color:var(--cream);cursor:pointer;transition:all .2s">
-              <span style="display:block;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)">${p.label}</span>
-              <span style="display:block;margin-top:.25rem;font-family:var(--font-display, serif);font-size:1.5rem">${fmt(p.price)}</span>
+        <p class="eyebrow">${SIZE_OPTIONS.label}</p>
+        <div class="pack-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.75rem">
+          ${SIZE_OPTIONS.options.map((o) => `
+            <button class="pack-opt${o.id === sizeId ? " active" : ""}" data-size="${o.id}" style="position:relative;padding:.85rem 1rem;text-align:left;border:1px solid ${o.id === sizeId ? "var(--gold)" : "var(--border)"};background:${o.id === sizeId ? "rgba(201,162,39,.1)" : "transparent"};color:var(--cream);cursor:pointer;transition:all .2s">
+              ${o.bestSeller ? '<span class="pack-best-seller">Best Seller</span>' : ""}
+              <span style="display:block;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold)">${o.label}</span>
+              ${sizePriceHTML(o)}
             </button>
           `).join("")}
         </div>
@@ -57,11 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="badges">
             ${["No Tobacco","No Nicotine","100% Herbal Blend"].map(b => `<span>✓ ${b}</span>`).join("")}
           </div>
-          ${packHTML}
+          ${sizeHTML}
           <div class="price-row">
             <div>
               <p class="eyebrow">Price</p>
-              <p class="price" id="unit-price">${fmt(unitPrice())}</p>
+              <div class="unit-price-block" id="unit-price">${unitPriceHTML(getSize())}</div>
             </div>
             <div class="qty">
               <button id="q-minus" aria-label="Decrease">–</button>
@@ -78,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function refreshPrice() {
     const up = document.getElementById("unit-price");
     const tot = document.getElementById("add-total");
-    if (up) up.textContent = fmt(unitPrice());
+    if (up) up.innerHTML = SIZE_OPTIONS ? unitPriceHTML(getSize()) : `<span class="price">${fmt(unitPrice())}</span>`;
     if (tot) tot.textContent = fmt(unitPrice() * qty);
   }
 
@@ -87,19 +119,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("q-minus").addEventListener("click", () => { qty = Math.max(1, qty - 1); val.textContent = qty; refreshPrice(); });
     document.getElementById("q-plus").addEventListener("click", () => { qty += 1; val.textContent = qty; refreshPrice(); });
     document.getElementById("add-cart").addEventListener("click", () => {
-      const p = isCig ? getPack() : null;
-      const slugV = isCig ? `${product.slug}--pack${packId}` : product.slug;
-      const nameV = isCig ? `${product.name} · ${p.label}` : product.name;
+      const s = SIZE_OPTIONS ? getSize() : null;
+      const slugV = SIZE_OPTIONS ? `${product.slug}--${SIZE_OPTIONS.suffix}${sizeId}` : product.slug;
+      const nameV = SIZE_OPTIONS ? `${product.name} · ${s.label}` : product.name;
       Cart.add({ slug: slugV, name: nameV, price: unitPrice(), image: product.image }, qty);
       toast(`${nameV} added to cart`, { desc: `Quantity: ${qty}` });
     });
 
-    if (isCig) {
+    if (SIZE_OPTIONS) {
       document.querySelectorAll(".pack-opt").forEach(btn => {
         btn.addEventListener("click", () => {
-          packId = btn.dataset.pack;
+          sizeId = btn.dataset.size;
           document.querySelectorAll(".pack-opt").forEach(b => {
-            const active = b.dataset.pack === packId;
+            const active = b.dataset.size === sizeId;
             b.classList.toggle("active", active);
             b.style.borderColor = active ? "var(--gold)" : "var(--border)";
             b.style.background = active ? "rgba(201,162,39,.1)" : "transparent";

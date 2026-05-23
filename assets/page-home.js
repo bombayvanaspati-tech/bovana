@@ -1,11 +1,13 @@
 // Home page
 document.addEventListener("DOMContentLoaded", () => {
-  const HIGHLIGHTS = [
-    { label: "Herbal Tea", status: "Available", to: "shop.html" },
-    { label: "Herbal Cigarettes", status: "Available", to: "shop.html" },
-    { label: "Cigar", status: "Coming Soon" },
-    { label: "Hookah", status: "Coming Soon" },
-  ];
+  const HIGHLIGHTS = window.CATEGORIES
+    .filter(c => c.slug !== "all")
+    .slice(0, 3)
+    .map(c => ({
+      label: c.label,
+      status: c.slug === "herbal-cigarettes" ? "Available" : "Coming Soon",
+      to: c.slug === "herbal-cigarettes" ? "shop.html" : null,
+    }));
   const grid = document.getElementById("highlights");
   if (grid) {
     grid.innerHTML = HIGHLIGHTS.map((h, i) => {
@@ -22,18 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const featured = document.getElementById("featured-grid");
   if (featured && window.PRODUCTS) {
-    const teas = PRODUCTS.filter(p => p.category === "herbal-tea");
-    const cigs = PRODUCTS.filter(p => p.category === "herbal-cigarettes");
-    const list = [...teas, ...cigs].slice(0, 3);
+    const list = PRODUCTS.filter(p => p.category === "herbal-cigarettes").slice(0, 3);
     featured.innerHTML = list.map((p, i) =>
       `<div class="reveal" data-delay="${i * 0.08}">${productCardHTML(p)}</div>`
     ).join("");
   }
 
   const FAQ = [
-    { q: "What is BOVANA?", a: "BOVANA (Bombay Vanaspati) is an Indian herbal lifestyle brand crafting premium herbal teas and 100% tobacco-free, nicotine-free herbal cigarettes, along with ritual herb blends." },
+    { q: "What is BOVANA?", a: "BOVANA (Bombay Vanaspati) is an Indian herbal lifestyle brand crafting 100% tobacco-free, nicotine-free herbal cigarettes and ritual herb blends." },
     { q: "Are BOVANA herbal cigarettes tobacco-free and nicotine-free?", a: "Yes. Every BOVANA herbal cigarette is made from a 100% botanical blend — mullein, damiana, peppermint, lavender and marshmallow leaf. There is no tobacco and no nicotine." },
-    { q: "What kinds of herbal tea does BOVANA sell?", a: "We currently offer two signature loose-leaf herbal teas: a caffeine-free Chamomile & Rose blend for the evening and a Tulsi Ginger Green Tea for the morning. Both are sourced from trusted Indian growers." },
     { q: "Where does BOVANA ship from?", a: "All orders are hand-packed at our Bengaluru atelier and shipped across India." },
     { q: "Is BOVANA only for adults?", a: "Yes. BOVANA products are intended for adults 18 years and older only. Our site enforces age verification at entry." },
   ];

@@ -115,7 +115,7 @@ main { padding-top: 5rem; }
 /* Footer */
 .site-footer { margin-top: 8rem; border-top: 1px solid var(--border); background: color-mix(in oklab, var(--background) 60%, transparent); }
 .site-footer .grid { display: grid; gap: 3rem; padding-block: 5rem; grid-template-columns: 1fr; }
-@media (min-width: 768px) { .site-footer .grid { grid-template-columns: 2fr 1fr 1fr; } }
+@media (min-width: 768px) { .site-footer .grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
 .footer-brand h3 { font-family: var(--font-brand); font-size: 1.875rem; color: var(--cream); }
 .footer-brand p.body { margin-top: 1.5rem; font-size: .875rem; color: var(--muted-foreground); line-height: 1.6; max-width: 24rem; }
 .social { display: flex; gap: 1rem; margin-top: 1.5rem; }
@@ -129,6 +129,20 @@ main { padding-top: 5rem; }
 .footer-bottom .legal { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-foreground); }
 .footer-bottom .legal .gold { color: var(--gold); }
 .footer-bottom .copy { font-size: 12px; color: var(--muted-foreground); }
+
+/* Legal pages */
+.legal-page { padding-block: 4rem 6rem; }
+.legal-page h1 { font-size: clamp(2.25rem, 4vw, 3.25rem); color: var(--cream); margin-top: 1rem; }
+.legal-updated { margin-top: 1.5rem; font-size: .875rem; color: var(--muted-foreground); }
+.legal-body { margin-top: 3rem; max-width: 42rem; }
+.legal-body > p:first-child { margin-top: 0; }
+.legal-body h2 { font-size: 1.125rem; color: var(--cream); margin-top: 2.5rem; margin-bottom: .5rem; font-weight: 500; }
+.legal-body p { margin-top: .875rem; color: color-mix(in oklab, var(--cream) 85%, transparent); font-weight: 300; line-height: 1.7; font-size: .9375rem; }
+.legal-body ul { margin-top: .875rem; padding-left: 1.25rem; list-style: disc; }
+.legal-body li { margin-top: .5rem; color: color-mix(in oklab, var(--cream) 85%, transparent); font-weight: 300; line-height: 1.65; font-size: .9375rem; }
+.legal-body a { color: var(--gold); border-bottom: 1px solid color-mix(in oklab, var(--gold) 40%, transparent); }
+.legal-body a:hover { color: var(--cream); }
+.legal-body strong { color: var(--cream); font-weight: 500; }
 
 /* Buttons */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; padding: 1rem 2rem; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; font-weight: 500; transition: all .25s; cursor: pointer; border: 1px solid transparent; }

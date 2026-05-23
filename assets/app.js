@@ -142,6 +142,13 @@
             </ul>
           </div>
           <div class="footer-col">
+            <p class="eyebrow label">Legal</p>
+            <ul>
+              <li><a href="terms.html">Terms &amp; Conditions</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
             <p class="eyebrow label">Contact</p>
             <ul>
               <li>hello@bovana.in</li>

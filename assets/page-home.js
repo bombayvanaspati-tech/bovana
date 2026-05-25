@@ -1,8 +1,7 @@
 // Home page
 document.addEventListener("DOMContentLoaded", () => {
   const HIGHLIGHTS = window.CATEGORIES
-    .filter(c => c.slug !== "all")
-    .slice(0, 3)
+    .filter(c => c.slug !== "all" && c.slug !== "herbal-tea")
     .map(c => ({
       label: c.label,
       status: c.slug === "herbal-cigarettes" ? "Available" : "Coming Soon",

@@ -1,13 +1,13 @@
 // Product catalog
 window.PRODUCTS = [
   {
-    slug: "chamomile-rose-herbal-tea",
+    slug: "tulsi-masala-herbal-chai",
     name: "Tulsi Masala Chai",
     category: "herbal-tea",
     categoryLabel: "Herbal Tea",
     price: 199,
-    image: "assets/product-chamomile-tea.webp?v=20260512025353",
-    images: ["assets/product-chamomile-tea.webp?v=20260512025353","assets/herbs-flatlay.webp?v=20260512025353","assets/lifestyle-ritual.webp?v=20260512025353","assets/hero-botanicals.webp?v=20260512025353"],
+    image: "assets/tulsi-masala-chai.webp?v=20260512025353",
+    images: ["assets/tulsi-masala-chai.webp?v=20260512025353"],
     tagline: "A floral evening cup — caffeine-free",
     aroma: ["Honeyed Chamomile", "Soft Rose", "Warm Hay"],
     ingredients: ["Egyptian Chamomile", "Damask Rose Petals", "Lemon Balm", "Liquorice Root"],
@@ -15,13 +15,13 @@ window.PRODUCTS = [
     popular: true,
   },
   {
-    slug: "tulsi-ginger-green-herbal-tea",
+    slug: "tmasala-black-herbal-tea",
     name: "Masala Black Tea",
     category: "herbal-tea",
     categoryLabel: "Herbal Tea",
     price: 199,
-    image: "assets/product-tulsi-tea.webp?v=20260512025353",
-    images: ["assets/product-tulsi-tea.webp?v=20260512025353","assets/product-herb-blend.webp?v=20260512025353","assets/herbs-flatlay.webp?v=20260512025353","assets/lifestyle-ritual.webp?v=20260512025353"],
+    image: "assets/masala-black-tea.webp?v=20260512025353",
+    images: ["assets/masala-black-tea.webp?v=20260512025353"],
     tagline: "Holy basil, ginger & green leaf — the morning cup",
     aroma: ["Peppery Tulsi", "Bright Ginger", "Grassy Green"],
     ingredients: ["Rama Tulsi", "Krishna Tulsi", "Sencha Green Tea", "Fresh Ginger Root", "Lemongrass"],

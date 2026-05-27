@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div><p class="eyebrow">Ingredients</p><ul>${product.ingredients.map(a => `<li>— ${a}</li>`).join("")}</ul></div>
           </div>
           <div class="badges">
-            ${["No Tobacco","No Nicotine","100% Herbal Blend"].map(b => `<span>✓ ${b}</span>`).join("")}
+          ${product.badges.map(b => `<span>✓ ${b}</span>`).join("")}
           </div>
           ${sizeHTML}
           <div class="price-row">

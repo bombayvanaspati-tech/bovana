@@ -139,6 +139,7 @@
               <li><a href="about.html">Our Story</a></li>
               <li><a href="affiliate.html">Affiliate Program</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="events.bovana.in">Events</a></li>
             </ul>
           </div>
           <div class="footer-col">

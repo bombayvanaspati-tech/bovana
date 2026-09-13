@@ -31,10 +31,10 @@ window.PRODUCTS = [
     popular: true,
   },
   {
-    slug: "bonava-supreme-leaf-herbal-cigarette",
+    slug: "bonava-supreme-leaf-rolling-blend",
     name: "BONAVA Supreme Leaf",
-    category: "herbal-cigarettes",
-    categoryLabel: "Herbal Cigarettes",
+    category: "rolling-blend",
+    categoryLabel: "Rolling Blend",
     price: 440,
     image: "assets/product-bonava-supreme-leaf.webp?v=20260512025353",
     images: ["assets/product-bonava-supreme-leaf.webp?v=20260512025353","assets/product-bonava-supreme-leaf-1.webp?v=20260512025353","assets/product-bonava-supreme-leaf-2.webp?v=20260512025353","assets/product-bonava-supreme-leaf-3.webp?v=20260512025353","assets/product-bonava-supreme-leaf-4.webp?v=20260512025353","assets/product-bonava-supreme-leaf-5.webp?v=20260512025353"],
@@ -42,14 +42,14 @@ window.PRODUCTS = [
     aroma: ["Toasted Mullein", "Sweet Raspberry Leaf", "Soft Hay"],
     badges: ["No Tobacco","No Nicotine","100% Herbal Blend"],
     ingredients: ["Mullein Leaf", "Raspberry Leaf", "Damiana", "Marshmallow Leaf", "Rose Petal"],
-    description: "BONAVA Supreme Leaf is our flagship tobacco-free, nicotine-free herbal infusion cigarette. A pale, ivory pack houses an ultra-premium blend of stone-cured mullein and hand-picked raspberry leaf — soft on the draw, naturally sweet on the finish, and rolled in unbleached paper.",
+    description: "BONAVA Supreme Leaf is our flagship tobacco-free, nicotine-free herbal infusion rolling blend. A pale, ivory pack houses an ultra-premium blend of stone-cured mullein and hand-picked raspberry leaf — soft on the draw, naturally sweet on the finish, and rolled in unbleached paper.",
     popular: true,
   },
   {
-    slug: "bonava-mint-sovereign-herbal-cigarette",
+    slug: "bonava-mint-sovereign-rolling-blend",
     name: "BONAVA Mint Sovereign",
-    category: "herbal-cigarettes",
-    categoryLabel: "Herbal Cigarettes",
+    category: "rolling-blend",
+    categoryLabel: "Rolling Blend",
     price: 440,
     image: "assets/product-bonava-mint-sovereign.webp?v=20260512025353",
     images: ["assets/product-bonava-mint-sovereign.webp?v=20260512025353","assets/product-bonava-mint-sovereign-1.webp?v=20260512025353","assets/product-bonava-mint-sovereign-2.webp?v=20260512025353","assets/product-bonava-mint-sovereign-3.webp?v=20260512025353","assets/product-bonava-mint-sovereign-4.webp?v=20260512025353","assets/product-bonava-mint-sovereign-5.webp?v=20260512025353"],
@@ -57,14 +57,14 @@ window.PRODUCTS = [
     aroma: ["Cool Peppermint", "Crisp Spearmint", "Soft Mullein"],
     badges: ["No Tobacco","No Nicotine","100% Herbal Blend"],
     ingredients: ["Peppermint", "Spearmint", "Mullein Leaf", "Damiana", "Lavender Bud"],
-    description: "BONAVA Mint Sovereign delivers a cool, sovereign mint character in a deep navy pack finished with gold botanical detailing. A tobacco-free, nicotine-free herbal infusion cigarette built on twin mints and a smooth mullein base — clean, bright, and calmly composed.",
+    description: "BONAVA Mint Sovereign delivers a cool, sovereign mint character in a deep navy pack finished with gold botanical detailing. A tobacco-free, nicotine-free herbal infusion rolling blend built on twin mints and a smooth mullein base — clean, bright, and calmly composed.",
     popular: true,
   },
   {
-    slug: "bonava-alpha-clove-herbal-cigarette",
+    slug: "bonava-alpha-clove-rolling-blend",
     name: "BONAVA Alpha Clove",
-    category: "herbal-cigarettes",
-    categoryLabel: "Herbal Cigarettes",
+    category: "rolling-blend",
+    categoryLabel: "Rolling Blend",
     price: 440,
     image: "assets/product-bonava-alpha-clove.webp?v=20260512025353",
     images: ["assets/product-bonava-alpha-clove.webp?v=20260512025353","assets/product-bonava-alpha-clove-1.webp?v=20260512025353","assets/product-bonava-alpha-clove-2.webp?v=20260512025353","assets/product-bonava-alpha-clove-3.webp?v=20260512025353","assets/product-bonava-alpha-clove-4.webp?v=20260512025353","assets/product-bonava-alpha-clove-5.webp?v=20260512025353"],
@@ -75,50 +75,20 @@ window.PRODUCTS = [
     description: "A rich herbal clove blend balanced with fresh mint notes. Premium taste with a royal and commanding identity. Tobacco-free and nicotine-free, rolled in unbleached paper for a smooth, aromatic draw.",
     popular: true,
   },
-  {
-    slug: "herbal-cigar-herbal-cigarette",
-    name: "Herbal Cigar",
-    category: "cigar",
-    categoryLabel: "Coming Soon",
-    price: 0,
-    image: "assets/product-botanical-box.webp?v=20260512025353",
-    tagline: "Slow-crafted, all-botanical",
-    badges: ["No Tobacco","No Nicotine","100% Herbal Blend"],
-    aroma: ["—"],
-    ingredients: ["—"],
-    description: "Currently in development.",
-    comingSoon: true,
-  },
-  {
-    slug: "hookah-flavor-herbal-cigarette",
-    name: "Hookah Herbal Flavor",
-    category: "hookah",
-    categoryLabel: "Coming Soon",
-    price: 0,
-    image: "assets/product-calm-jar.webp?v=20260512025353",
-    tagline: "Aromatic shisha alternative",
-    aroma: ["—"],
-    badges: ["No Tobacco","No Nicotine","100% Herbal Blend"],
-    ingredients: ["—"],
-    description: "Currently in development.",
-    comingSoon: true,
-  },
 ];
 
 window.CATEGORIES = [
   { slug: "all", label: "All" },
   { slug: "herbal-tea", label: "Herbal Tea" },
-  { slug: "herbal-cigarettes", label: "Herbal Cigarettes" },
-  { slug: "cigar", label: "Cigar" },
-  { slug: "hookah", label: "Hookah" },
+  { slug: "rolling-blend", label: "Rolling Blend" },
 ];
 
 window.getProduct = function (slug) {
   if (!slug) return;
   const base = slug.replace(/--(?:pack\d+|g\d+)$/, "");
   let product = window.PRODUCTS.find((p) => p.slug === base);
-  if (!product && !base.endsWith("-herbal-cigarette")) {
-    product = window.PRODUCTS.find((p) => p.slug === `${base}-herbal-cigarette`);
+  if (!product && !base.endsWith("-rolling-blend")) {
+    product = window.PRODUCTS.find((p) => p.slug === `${base}-rolling-blend`);
   }
   if (!product && !base.endsWith("-herbal-tea")) {
     product = window.PRODUCTS.find((p) => p.slug === `${base}-herbal-tea`);

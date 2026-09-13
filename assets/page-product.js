@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("page-title").textContent = `${product.name} — ${product.categoryLabel} | BOVANA`;
   document.getElementById("page-desc").setAttribute("content", product.description);
 
-  const isCig = product.category === "herbal-cigarettes";
+  const isCig = product.category === "rolling-blend";
   const isTea = product.category === "herbal-tea";
   const SIZE_OPTIONS = isCig
     ? { suffix: "pack", label: "Pack Size", defaultId: "20", options: [

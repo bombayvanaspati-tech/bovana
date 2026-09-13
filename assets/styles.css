@@ -175,17 +175,6 @@ section.bordered-bottom { border-bottom: 1px solid var(--border); }
 .section-head { text-align: center; max-width: 42rem; margin-inline: auto; }
 .section-head h2 { font-size: clamp(2.25rem, 5vw, 4rem); color: var(--cream); margin-top: 1rem; }
 
-/* Highlights grid */
-.highlights { margin-top: 4rem; display: grid; grid-template-columns: 1fr; gap: 1px; background: color-mix(in oklab, var(--border) 60%, transparent); border: 1px solid var(--border); }
-@media (min-width: 768px) { .highlights { grid-template-columns: repeat(3, 1fr); } }
-.highlights .cell { background: var(--card); padding: 2rem; transition: background .3s; }
-@media (min-width: 1024px) { .highlights .cell { padding: 2.5rem; } }
-.highlights a.cell:hover { background: color-mix(in oklab, var(--emerald-deep) 8%, var(--card)); }
-.highlights .status { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted-foreground); }
-.highlights .status.live { color: var(--gold); }
-.highlights h3 { margin-top: 1rem; font-size: 1.5rem; color: var(--cream); }
-@media (min-width: 768px) { .highlights h3 { font-size: 1.875rem; } }
-.highlights .explore { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: .5rem; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
 
 /* Featured products */
 .featured-head { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 4rem; justify-content: space-between; }

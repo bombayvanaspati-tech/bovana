@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const FAQS = [
-    { q: "What is the BOVANA Affiliate Partner Program?", a: "The BOVANA Affiliate Partner Program lets creators, wellness practitioners, lifestyle bloggers, and retailers earn commission by recommending BOVANA's premium tobacco-free, nicotine-free herbal cigarettes from Bombay Vanaspati. Partners receive a unique referral link, marketing assets, and monthly payouts." },
+    { q: "What is the BOVANA Affiliate Partner Program?", a: "The BOVANA Affiliate Partner Program lets creators, wellness practitioners, lifestyle bloggers, and retailers earn commission by recommending BOVANA's premium tobacco-free, nicotine-free rolling blends from Bombay Vanaspati. Partners receive a unique referral link, marketing assets, and monthly payouts." },
     { q: "How much commission do BOVANA affiliates earn?", a: "BOVANA affiliates earn 15% base commission on every qualifying sale, with tiered upgrades up to 25% for top performers. Cookie window is 45 days and there is no cap on monthly earnings." },
     { q: "Who can join the BOVANA affiliate program?", a: "Wellness creators, yoga and Ayurveda practitioners, lifestyle and luxury bloggers, podcasters, mindful-living publications, and independent retailers in India and globally are welcome to apply. Applicants are reviewed for brand alignment within 3 business days." },
     { q: "When and how are affiliate payouts made?", a: "Payouts are processed monthly in INR via UPI or bank transfer for Indian partners, and in USD via PayPal or Wise for international partners. Minimum payout threshold is ₹2,000." },
-    { q: "Is BOVANA a tobacco company?", a: "No. BOVANA (Bombay Vanaspati) is a herbal lifestyle brand. All products — including our herbal cigarettes — are 100% tobacco-free and nicotine-free, crafted from botanical ingredients like tulsi, mint, clove, and rose." },
+    { q: "Is BOVANA a tobacco company?", a: "No. BOVANA (Bombay Vanaspati) is a herbal lifestyle brand. All products — including our rolling blends — are 100% tobacco-free and nicotine-free, crafted from botanical ingredients like tulsi, mint, clove, and rose." },
   ];
   const faqEl = document.getElementById("aff-faq");
   faqEl.style.borderTop = "1px solid var(--border)";

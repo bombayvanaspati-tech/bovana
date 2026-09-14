@@ -115,7 +115,7 @@ main { padding-top: 5rem; }
 /* Footer */
 .site-footer { margin-top: 8rem; border-top: 1px solid var(--border); background: color-mix(in oklab, var(--background) 60%, transparent); }
 .site-footer .grid { display: grid; gap: 3rem; padding-block: 5rem; grid-template-columns: 1fr; }
-@media (min-width: 768px) { .site-footer .grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+@media (min-width: 768px) { .site-footer .grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; } }
 .footer-brand h3 { font-family: var(--font-brand); font-size: 1.875rem; color: var(--cream); }
 .footer-brand p.body { margin-top: 1.5rem; font-size: .875rem; color: var(--muted-foreground); line-height: 1.6; max-width: 24rem; }
 .social { display: flex; gap: 1rem; margin-top: 1.5rem; }
@@ -303,6 +303,8 @@ section.bordered-bottom { border-bottom: 1px solid var(--border); }
 .product-detail h1 { font-size: clamp(2.5rem, 5vw, 3.75rem); color: var(--cream); margin-top: .75rem; }
 .product-detail .tagline { color: color-mix(in oklab, var(--cream) 70%, transparent); font-style: italic; margin-top: .75rem; }
 .product-detail .desc { margin-top: 1.5rem; color: color-mix(in oklab, var(--cream) 85%, transparent); font-weight: 300; line-height: 1.6; }
+.product-detail .long-desc { margin-top: 1rem; display: grid; gap: 1rem; }
+.product-detail .long-desc p { color: color-mix(in oklab, var(--cream) 75%, transparent); font-weight: 300; line-height: 1.7; font-size: .9375rem; }
 .spec-grid { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr; gap: 2rem; }
 @media (min-width: 640px) { .spec-grid { grid-template-columns: 1fr 1fr; } }
 .spec-grid ul { margin-top: .75rem; display: grid; gap: .375rem; }

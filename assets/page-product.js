@@ -8,17 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  document.getElementById("page-title").textContent = `${product.name} — ${product.categoryLabel} | BOVANA`;
-  document.getElementById("page-desc").setAttribute("content", product.description);
+  document.getElementById("page-title").textContent = product.seoTitle || `${product.name} — ${product.categoryLabel} | BOVANA`;
+  document.getElementById("page-desc").setAttribute("content", product.seoDescription || product.description);
+  document.getElementById("page-canonical").setAttribute("href", `https://bovana.in/product.html?slug=${encodeURIComponent(product.slug)}`);
 
-  const isCig = product.category === "rolling-blend";
+  const isRollingBlend = product.category === "rolling-blend";
   const isTea = product.category === "herbal-tea";
-  const SIZE_OPTIONS = isCig
-    ? { suffix: "pack", label: "Pack Size", defaultId: "20", options: [
-      { id: "5", label: "Pack of 5", price: 125, discount: 0 },  
-      { id: "10", label: "Pack of 10", price: 240, discount: 15, bestSeller: true },
-      { id: "20", label: "Pack of 20", price: 440, discount: 18 },
-
+  const SIZE_OPTIONS = isRollingBlend
+    ? { suffix: "pack", label: "Pack Size", defaultId: "60", options: [
+      { id: "60", label: "60 Gram Packet", price: 440, discount: 0 },
       ]}
     : isTea
     ? { suffix: "g", label: "Weight", defaultId: "100", options: [
@@ -56,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sizeHTML = SIZE_OPTIONS ? `
       <div class="pack-select" style="margin-top:2rem">
         <p class="eyebrow">${SIZE_OPTIONS.label}</p>
-        <div class="pack-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.75rem">
+        <div class="pack-grid" style="display:grid;grid-template-columns:repeat(${Math.min(SIZE_OPTIONS.options.length, 3)},1fr);gap:.75rem;margin-top:.75rem">
           ${SIZE_OPTIONS.options.map((o) => `
             <button class="pack-opt${o.id === sizeId ? " active" : ""}" data-size="${o.id}" style="position:relative;padding:.85rem 1rem;text-align:left;border:1px solid ${o.id === sizeId ? "var(--gold)" : "var(--border)"};background:${o.id === sizeId ? "rgba(201,162,39,.1)" : "transparent"};color:var(--cream);cursor:pointer;transition:all .2s">
               ${o.bestSeller ? '<span class="pack-best-seller">Best Seller</span>' : ""}
@@ -82,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="tagline">${product.tagline}</p>
           <span class="gold-divider"></span>
           <p class="desc">${product.description}</p>
+          ${product.longDescription ? `<div class="long-desc">${product.longDescription}</div>` : ""}
           <div class="spec-grid">
             <div><p class="eyebrow">Aroma Profile</p><ul>${product.aroma.map(a => `<li>— ${a}</li>`).join("")}</ul></div>
             <div><p class="eyebrow">Ingredients</p><ul>${product.ingredients.map(a => `<li>— ${a}</li>`).join("")}</ul></div>

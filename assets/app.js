@@ -139,7 +139,13 @@
               <li><a href="about.html">Our Story</a></li>
               <li><a href="affiliate.html">Affiliate Program</a></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="events.bovana.in">Events</a></li>
+              <li><a href="https://events.bovana.in">Events</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <p class="eyebrow label">Shop</p>
+            <ul>
+              ${(window.PRODUCTS || []).map(p => `<li><a href="product.html?slug=${encodeURIComponent(p.slug)}">${p.name}</a></li>`).join("")}
             </ul>
           </div>
           <div class="footer-col">
@@ -152,7 +158,7 @@
           <div class="footer-col">
             <p class="eyebrow label">Contact</p>
             <ul>
-              <li>hello@bovana.in</li>
+              <li><!--email_off--><a href="mailto:hello@bovana.in">hello@bovana.in</a><!--/email_off--></li>
               <li>Mumbai, India</li>
               <li style="color:var(--muted-foreground)">Mon–Sat · 10am–7pm IST</li>
             </ul>

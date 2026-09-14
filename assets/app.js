@@ -23,6 +23,13 @@
       if (existing) existing.qty += qty;
       else items.push({ ...item, qty });
       this.set(items);
+      if (window.gtag) {
+        gtag("event", "add_to_cart", {
+          currency: "INR",
+          value: item.price * qty,
+          items: [{ item_id: item.slug, item_name: item.name, price: item.price, quantity: qty }],
+        });
+      }
     },
     setQty(slug, qty) {
       let items = this.get();

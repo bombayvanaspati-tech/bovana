@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("page-desc").setAttribute("content", product.seoDescription || product.description);
   document.getElementById("page-canonical").setAttribute("href", `https://bovana.in/product.html?slug=${encodeURIComponent(product.slug)}`);
 
+  if (window.gtag) {
+    gtag("event", "view_item", {
+      currency: "INR",
+      value: product.price,
+      items: [{ item_id: product.slug, item_name: product.name, price: product.price, item_category: product.categoryLabel }],
+    });
+  }
+
   const isRollingBlend = product.category === "rolling-blend";
   const isTea = product.category === "herbal-tea";
   const SIZE_OPTIONS = isRollingBlend

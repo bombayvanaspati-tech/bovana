@@ -91,7 +91,17 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
     const go = document.getElementById("go-checkout");
-    if (go) go.addEventListener("click", () => { step = "checkout"; render(); });
+    if (go) go.addEventListener("click", () => {
+      if (window.gtag) {
+        const items = Cart.get();
+        gtag("event", "begin_checkout", {
+          currency: "INR",
+          value: Cart.total(),
+          items: items.map(i => ({ item_id: i.slug, item_name: i.name, price: i.price, quantity: i.qty })),
+        });
+      }
+      step = "checkout"; render();
+    });
     const back = document.getElementById("go-back");
     if (back) back.addEventListener("click", () => { step = "cart"; render(); });
 
@@ -110,6 +120,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const lines = items.map(i => `• ${i.name} — Qty: ${i.qty} — ${fmt(i.price * i.qty)}`).join("\n");
         const message = `I am looking for this:\n\n${lines}\n\nTotal: ${fmt(total)}\n\nName: ${info.name}\nEmail: ${info.email}\nNumber: ${info.number}`;
         const url = `https://wa.me/919819412559?text=${encodeURIComponent(message)}`;
+        if (window.gtag) {
+          gtag("event", "generate_lead", {
+            currency: "INR",
+            value: total,
+            items: items.map(i => ({ item_id: i.slug, item_name: i.name, price: i.price, quantity: i.qty })),
+          });
+        }
         window.open(url, "_blank");
         Cart.clear();
         step = "done";
